@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "./pkg/proto/pb";
+
+message product{
+    uint64 ID = 1;
+    string Name = 2;
+    uint64 Price = 3;
+}
+
+message basket{
+    uint64 UserID = 1;
+    uint64 FullPrice = 2;
+    repeated product products = 3;
+}
