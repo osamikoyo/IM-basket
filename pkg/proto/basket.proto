@@ -13,3 +13,17 @@ message basket{
     uint64 FullPrice = 2;
     repeated product products = 3;
 }
+
+message NewBasketReq{
+    uint64 UserID = 1;
+}
+
+message Response{
+    string Error = 1;
+    uint32 Status = 2;
+}
+
+message AddProductReq{
+    uint64 BasketID = 1;
+    product Product = 2;
+}
