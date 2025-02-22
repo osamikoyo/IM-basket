@@ -2,6 +2,13 @@ syntax = "proto3";
 
 option go_package = "./pkg/proto/pb";
 
+service BasketService{
+    rpc New (NewBasketReq) returns (Response);
+    rpc AddProduct (AddProductReq) returns (Response);
+    rpc Get (GetBasketReq) returns (GetBasketResp);
+    rpc DeleteProduct (DeleteProductReq) returns (Response);
+}
+
 message product{
     uint64 ID = 1;
     string Name = 2;
@@ -26,4 +33,18 @@ message Response{
 message AddProductReq{
     uint64 BasketID = 1;
     product Product = 2;
+}
+
+message GetBasketReq{
+    uint64 BasketID = 1;
+}
+
+message GetBasketResp{
+    basket Basket = 1;
+    Response response = 2;
+}
+
+message DeleteProductReq{
+    uint64 BasketID = 1;
+    uint64 ProductID = 2;
 }
