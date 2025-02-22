@@ -10,8 +10,9 @@ import (
 type Config struct{
 	AmqpUrl string `yaml:"amqp_url"`
 	MongoUrl string `yaml:"mongo_url"`
-	Port uint32
-	Host string
+	RpcQueueName string `yaml:"rpc_que_name"`
+	Port uint32 `yaml:"port"`
+	Host string `yaml:"host"`
 }
 
 func Load(path string) (*Config, error) {

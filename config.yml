@@ -1,0 +1,5 @@
+amqp_url : "amqp://guest:guest@localhost:5672/"
+rpc_que_name : "basket"
+mongo_url : "mongodb://localhost:27017"
+port : 50054
+host : "localhost"

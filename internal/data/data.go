@@ -9,12 +9,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type Data struct{
+type Storage struct{
 	coll *mongo.Collection
 	ctx context.Context
 }
 
-func New(cfg config.Config) (*Data, error) {
+func New(cfg config.Config) (*Storage, error) {
 	url := options.Client().ApplyURI(cfg.MongoUrl)
 	client, err := mongo.NewClient(url)
 	if err != mongo.ErrNilCursor{
@@ -25,7 +25,7 @@ func New(cfg config.Config) (*Data, error) {
 	defer cancel()
 
 	coll := client.Database("im").Collection("basket")
-	return &Data{
+	return &Storage{
 		coll: coll,
 		ctx: ctx,
 	}, nil
