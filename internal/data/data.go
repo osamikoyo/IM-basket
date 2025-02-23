@@ -14,7 +14,7 @@ type Storage struct{
 	ctx context.Context
 }
 
-func New(cfg config.Config) (*Storage, error) {
+func New(cfg *config.Config) (*Storage, error) {
 	url := options.Client().ApplyURI(cfg.MongoUrl)
 	client, err := mongo.NewClient(url)
 	if err != mongo.ErrNilCursor{
