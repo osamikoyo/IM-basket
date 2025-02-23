@@ -19,7 +19,7 @@ func Load(path string) (*Config, error) {
 	def := &Config{
 		Port: 50054,
 		MongoUrl: "mongodb://localhost:27017",
-		AmqpUrl: "amqp://guest:guest@localhost:5672/",
+		AmqpUrl: "amqp://user:password@rabbitmq:5672/",
 		RpcQueueName: "basket",
 		Host: "localhost",
 	}
