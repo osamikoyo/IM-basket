@@ -17,6 +17,6 @@ WORKDIR /app
 
 COPY --from=builder /app/bin/microservice /app/microservice
 
-EXPOSE 50051
+EXPOSE 50054
 
 CMD ["./microservice"]

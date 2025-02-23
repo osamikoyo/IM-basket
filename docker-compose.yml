@@ -10,6 +10,11 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]  # Проверяет статус RabbitMQ
+      interval: 10s                           # Проверка каждые 10 секунд
+      timeout: 5s                             # Таймаут проверки
+      retries: 5                              # Количество попыток
     networks:
       - app-network
 
@@ -19,11 +24,12 @@ services:
       dockerfile: Dockerfile
     container_name: app
     ports:
-      - "8080:8080"
+      - "50054:50054"
     environment:
       RABBITMQ_URL: "amqp://user:password@rabbitmq:5672/"
     depends_on:
-      - rabbitmq
+      rabbitmq:
+        condition: service_healthy  # Ждём, пока RabbitMQ не станет "здоровым"
     networks:
       - app-network
 

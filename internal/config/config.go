@@ -16,14 +16,22 @@ type Config struct{
 }
 
 func Load(path string) (*Config, error) {
+	def := &Config{
+		Port: 50054,
+		MongoUrl: "mongodb://localhost:27017",
+		AmqpUrl: "amqp://guest:guest@localhost:5672/",
+		RpcQueueName: "basket",
+		Host: "localhost",
+	}
+
 	file, err := os.Open(path)
 	if err != nil{
-		return nil, err
+		return def, nil
 	}
 
 	body, err := io.ReadAll(file)
 	if err != nil{
-		return nil, err
+		return def, nil
 	}
 
 	var cfg Config
