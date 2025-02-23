@@ -30,7 +30,7 @@ func ToPbProducts(p []Product) []*pb.Product {
 	return res
 }
 
-func ToPBbasket(b Basket) *pb.Basket {
+func ToPBbasket(b *Basket) *pb.Basket {
 	return &pb.Basket{
 		Products: ToPbProducts(b.Products),
 		UserID: b.UserID,
