@@ -60,7 +60,20 @@ func (s *Server) Get(_ context.Context,req *pb.GetBasketReq) (*pb.GetBasketResp,
             Status: http.StatusOK,
             Error: "",
         },
-        Basket: models.ToPBbasket(*basket),
+        Basket: models.ToPBbasket(basket),
     }, nil
 }
-func (s *Server) New(_ context.Context,req *pb.NewBasketReq) (*pb.Response, error){}
+func (s *Server) New(_ context.Context,req *pb.NewBasketReq) (*pb.Response, error){
+    err := s.Storage.Create(req.UserID)
+    if err != nil{
+        return &pb.Response{
+            Status: http.StatusInternalServerError,
+            Error: err.Error(),
+        }, nil
+    }
+
+    return &pb.Response{
+        Status: http.StatusOK,
+        Error: "",
+    }, nil
+}
